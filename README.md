@@ -11,6 +11,9 @@
 **Please note that this package has not been productized, and that academia is the intended audience.**\
 **The package is provided "as-is", and as such no more than limited support can be expected.**
 
+> :warning: **these packages are modified to awkwardly support MeasuredForce on [abb_robot_driver](https://github.com/alessioprini/abb_robot_driver)**
+
+
 ## Overview
 
 C++ library intended for use with [abb_robot_driver](https://github.com/ros-industrial/abb_robot_driver), with the purpose of encapsulating *ROS agnostic* components.
