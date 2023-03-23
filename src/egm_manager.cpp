@@ -208,6 +208,8 @@ bool EGMManager::Channel::updateTCPRobotJointStates(MotionData::MechanicalUnitGr
 {
   const auto& positions{input_.feedback().robot().joints().position()};
   const auto& velocities{input_.feedback().robot().joints().velocity()};
+  const auto& efforts{input_.measured_force()};
+
 
   const int active_joints{countActiveTCPRobotJoints(group)};
 
@@ -232,6 +234,7 @@ bool EGMManager::Channel::updateTCPRobotJointStates(MotionData::MechanicalUnitGr
         double conversion_factor{joint.rotational ? Constants::DEG_TO_RAD : Constants::MM_TO_M};
         joint.state.position = positions.values(counter)*conversion_factor;
         joint.state.velocity = velocities.values(counter)*conversion_factor;
+        joint.state.effort = efforts.force(counter);
         ++counter;
       }
     }
@@ -244,6 +247,7 @@ bool EGMManager::Channel::updateExternalJointStates(MotionData::MechanicalUnitGr
 {
   const auto& positions{input_.feedback().external().joints().position()};
   const auto& velocities{input_.feedback().external().joints().velocity()};
+
 
   const int active_joints{countActiveExternalJoints(group)};
 
